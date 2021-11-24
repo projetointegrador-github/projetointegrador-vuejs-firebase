@@ -6,6 +6,10 @@
   box-sizing: border-box;
   font-family: "Roboto";
 }
+#alertAdicionadores {
+  position: absolute;
+  bottom: 30px;
+}
 .h1 {
   font-size: 2em;
   margin: 0 0 30px 0;

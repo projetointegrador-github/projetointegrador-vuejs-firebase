@@ -32,6 +32,12 @@ import Tabs from '../components/Tabs.vue'
 export default {
 
 
+    data() {
+        return {
+            alertAdicionado: true
+        }
+    },
+
     components: {
         Tabs
     },

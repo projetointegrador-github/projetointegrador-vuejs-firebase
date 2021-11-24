@@ -21,14 +21,51 @@
       </v-card-text>
 
       <v-card-actions>
-        <!-- <v-btn color="green" outlined>COMPRAR</v-btn> -->
-        <v-btn text outlined @click.stop.prevent="addCart(camiseta.id)">
-          ADICIONAR AO CARRINHO
+        <v-btn color="green" @click.stop.prevent="addCart(camiseta.id)" dark @click.prevent.stop="callDialogAdicionado">
+          COMPRAR
           <v-icon right>mdi-cart-plus</v-icon>
         </v-btn>
+        <!-- <v-btn text outlined @click.stop.prevent="addCart(camiseta.id)">
+          ADICIONAR AO CARRINHO
+          <v-icon right>mdi-cart-plus</v-icon>
+        </v-btn> -->
       </v-card-actions>
     </v-card>
-    {{ camisetasCarrinho }}
+    <v-dialog
+      v-model="dialogAdicionado"
+      max-width="500"
+    >
+      <v-card>
+        <v-card-title class="text-h5">
+          PRODUTO ADICIONADO AO CARRINHO
+        </v-card-title>
+
+        <v-card-text>
+          Vá ao carrinho para ver seus produtos.
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+
+          <v-btn
+            color="red darken-1"
+            text
+            @click="dialogAdicionado = false"
+          >
+            FECHAR
+          </v-btn>
+          <v-btn
+            dense
+            color="green darken-1"
+            text
+            @click="dialogAdicionado = false"
+            :to="{ name: 'Carrinho' }"
+          >
+            IR AO CARRINHO
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -36,6 +73,13 @@
 import { mapState } from 'vuex'
 
 export default {
+
+  data() {
+    return {
+      dialogAdicionado: false,
+      dialogCart: false
+    }
+  },
 
 
   computed: {
@@ -49,6 +93,10 @@ export default {
   methods: {
     addCart(id) {
       this.$store.dispatch('addCart', id)
+    },
+    callDialogAdicionado() {
+      this.dialogAdicionado = true;
+      setTimeout(() => this.dialogAdicionado = false, 5000)
     }
   }
 
