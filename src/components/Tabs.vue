@@ -1,8 +1,8 @@
 <template>
   <v-tabs>
-    <v-tab :to="{ name: 'Loja' }" @click.stop.prevent="tipo = 'geral'">Todos</v-tab>
-    <v-tab :to="{ name: 'Loja' }" @click.stop.prevent="tipo = 'feminino'">Feminino</v-tab>
-    <v-tab :to="{ name: 'Loja' }" @click.stop.prevent="tipo = 'masculino'">Masculino</v-tab>
+    <v-tab :to="{ name: 'Loja' }" @click.stop.prevent="tipo = 'Geral'">Todos</v-tab>
+    <v-tab :to="{ name: 'Loja' }" @click.stop.prevent="tipo = 'Feminino'">Feminino</v-tab>
+    <v-tab :to="{ name: 'Loja' }" @click.stop.prevent="tipo = 'Masculino'">Masculino</v-tab>
   </v-tabs>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       
-      tipo: undefined,
+      tipo: '',
 
     }
       
@@ -21,6 +21,9 @@ export default {
 
 
   watch: {
+    tipo(t) {
+      this.$store.dispatch('filtrarCamisetas', t)
+    }
   },
 }
 </script>

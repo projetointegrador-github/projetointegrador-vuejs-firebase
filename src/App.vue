@@ -7,13 +7,11 @@ export default {
   name: 'App',
 
 
-  mounted() {
+  created() {
     this.$store.dispatch('getCamisetas');
+    this.$store.dispatch('filtrarCamisetas')
   }
 
 
 };
 </script>
-
-<style>
-</style>

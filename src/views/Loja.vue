@@ -3,7 +3,7 @@
     <v-card
       class="mx-auto card-camiseta"
       max-width="400"
-      v-for="(camiseta, index) in camisetas"
+      v-for="(camiseta, index) of camisetasFiltradas"
       :key="index"
     >
       <v-img class="white--text align-end" height="200px">
@@ -21,13 +21,14 @@
       </v-card-text>
 
       <v-card-actions>
-        <v-btn color="green" outlined>COMPRAR</v-btn>
-        <v-btn text outlined>
+        <!-- <v-btn color="green" outlined>COMPRAR</v-btn> -->
+        <v-btn text outlined @click.stop.prevent="addCart(camiseta.id)">
           ADICIONAR AO CARRINHO
           <v-icon right>mdi-cart-plus</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
+    {{ camisetasCarrinho }}
   </div>
 </template>
 
@@ -39,10 +40,17 @@ export default {
 
   computed: {
     ...mapState({
-    camisetas: state => state.camisetas
+    camisetasFiltradas: state => state.camisetasFiltradas,
+    camisetasCarrinho: state => state.camisetasCarrinho
   }),
-  }
+  },
 
+
+  methods: {
+    addCart(id) {
+      this.$store.dispatch('addCart', id)
+    }
+  }
 
 };
 </script>

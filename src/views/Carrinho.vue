@@ -9,20 +9,20 @@
           <v-row class="produtosEstrutura d-flex flex-column">
             <div
               class="produtos d-flex align-center"
-              v-for="(camiseta, index) of camisetas"
+              v-for="(camiseta, index) of camisetasCarrinho"
               :key="index"
             >
               <div class="imgProduto">
                 <img
-                  src=""
+                  src="../assets/camiseta1.png"
                   alt="Camiseta"
                   class="imgCamisetaProduto"
                 />
               </div>
               <div class="produtoContent">
-                Camiseta <br />
-                Quantidade: 5 <br />
-                Preço: R$ 35.00
+                {{ camiseta.tipo }} <br />
+                Quantidade: {{ camiseta.quantidade }} <br />
+                Preço: R$ {{ camiseta.preço }},00
               </div>
             </div>
           </v-row>
@@ -36,7 +36,7 @@
           <v-row class="resumoContent d-flex flex-column" id="total">
             <v-container class="d-flex total justify-space-between">
               <span>Total:</span>
-              <span>RS$ 105.00</span>
+              <span>R$ {{ preçoTotal }},00</span>
             </v-container>
           </v-row>
           <v-row class="btnResumo">
@@ -52,19 +52,22 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
 
-
-  data() {
-    return {
-      camisetasCarrinho: []
-    };
-  },
-
-
-    methods: {
-
+  computed: {
+    ...mapState({
+      camisetasCarrinho: state => state.camisetasCarrinho
+    }),
+    preçoTotal() {
+      var preço = 0;
+      this.camisetasCarrinho.forEach(camiseta => {
+        preço += camiseta.preço * camiseta.quantidade
+      })
+      return preço
     }
+  }
 
 
 };

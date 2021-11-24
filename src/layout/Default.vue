@@ -19,7 +19,7 @@
     </v-main>
 
     <v-footer app color="black" dark class="d-flex justify-space-between" >
-        Projeto Integrador 2021
+        Projeto Integrador 2021 {{ $store.state.visitCount }}
         <v-btn :to="{ name: 'Sobre' }" id="btn2sobre">Sobre</v-btn>
     </v-footer>
     </v-app>
@@ -30,12 +30,6 @@
 import Tabs from '../components/Tabs.vue'
 
 export default {
-
-
-    data() {
-        return {
-        }
-    },
 
 
     components: {
