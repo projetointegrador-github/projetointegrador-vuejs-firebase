@@ -7,9 +7,6 @@
 </template>
 
 <script>
-
-import { bus } from '../main.js'
-
 export default {
 
 
@@ -24,9 +21,6 @@ export default {
 
 
   watch: {
-        tipo(t) {
-            bus.$emit('novoTipo', t)
-        }
-    },
+  },
 }
 </script>
